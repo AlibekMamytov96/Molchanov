@@ -25,6 +25,13 @@ class PostCreate(ObjectCreateMixin, View):
     # raise_exception = True
 
 
+class PostUpdate(ObjectUpdateMixin, View):
+    model = Post
+    model_form = PostForm
+    template = 'blog/post_update_form.html'
+    raise_exception = True
+
+
 class TagDetail(ObjectDetailMixin, View):
     model = Tag
     template = 'blog/tag_detail.html'
@@ -32,7 +39,14 @@ class TagDetail(ObjectDetailMixin, View):
 
 class TagCreate(ObjectCreateMixin, View):
     model_form = TagForm
-    template = 'blog/tag_create.html'
+    template = 'blog/tag_create_form.html'
+    # raise_exception = True
+
+
+class TagUpdate(ObjectUpdateMixin, View):
+    model = Tag
+    model_form = TagForm
+    template = 'blog/tag_update_form.html'
     # raise_exception = True
 
 
