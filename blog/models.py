@@ -15,7 +15,7 @@ class Post(models.Model):
     title = models.CharField(max_length=150, db_index=True)
     slug = models.SlugField(max_length=150, unique=True)
     body = models.TextField(blank=True, db_index=True)
-    # tags = models.ManyToManyField('Tag', blank=True, related_name='posts')  # posts=post__set
+    tags = models.ManyToManyField('Tag', blank=True, related_name='posts')  # posts=post__set
     date_pub = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -41,13 +41,14 @@ class Post(models.Model):
 #     class Meta:
 #         ordering = ['-date_pub']
 #
-#
-# class Tag(models.Model):
-#     title = models.CharField(max_length=50)
-#     slug = models.SlugField(max_length=50)
-#
-#     def get_absolute_url(self):
-#         return reverse('tag_detail_url', kwargs={'slug': self.slug})
+
+
+class Tag(models.Model):
+    title = models.CharField(max_length=50)
+    slug = models.SlugField(max_length=50)
+
+    def get_absolute_url(self):
+        return reverse('tag_detail_url', kwargs={'slug': self.slug})
 #
 #     def get_update_url(self):
 #         return reverse('tag_update_url', kwargs={'slug': self.slug})
@@ -55,8 +56,9 @@ class Post(models.Model):
 #     def get_delete_url(self):
 #         return reverse('tag_delete_url', kwargs={'slug': self.slug})
 #
-#     def __str__(self):
-#         return self.title
+
+    def __str__(self):
+        return '{}'.format(self.title)
 #
 #     class Meta:
 #         ordering = ['title']
