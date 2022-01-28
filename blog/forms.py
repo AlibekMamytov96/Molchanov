@@ -1,17 +1,19 @@
 from django import forms
 from django.core.exceptions import ValidationError
-from .models import *
+from .models import Tag, Post
 
 
-class TagForm(forms.Form):
-    class TagForm(forms.ModelForm):
-        class Meta:
-            model = Tag
-            fields = ['title', 'slug']
-            widgets = {
-                'title': forms.TextInput(attrs={'class': 'form-control'}),
-                'slug': forms.TextInput(attrs={'class': 'form-control'})
-            }
+class TagForm(forms.ModelForm):
+    class Meta:
+        model = Tag
+        fields = ['title', 'slug']
+        widgets = {
+            'title': forms.TextInput(attrs={'class': 'form-control'}),
+            'slug': forms.TextInput(attrs={'class': 'form-control'})
+        }
+
+    # title.widget.attrs.update({'class': 'form-control'})
+    # slug.widget.attrs.update({'class': 'form-control'})
 
     def clean_slug(self):
         new_slug = self.cleaned_data['slug'].lower()
