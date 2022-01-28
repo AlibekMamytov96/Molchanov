@@ -1,6 +1,7 @@
 from django.views.generic import View
 from django.shortcuts import render, get_object_or_404, redirect
 from django.shortcuts import render
+from django.urls import reverse
 
 
 # Create your views here.
@@ -32,6 +33,13 @@ class PostUpdate(ObjectUpdateMixin, View):
     raise_exception = True
 
 
+class PostDelete(ObjectDeleteMixin, View):
+    model = Post
+    template = 'blog/post_delete_form.html'
+    redirect_url = 'posts_list_url'
+    # raise_exception = True
+
+
 class TagDetail(ObjectDetailMixin, View):
     model = Tag
     template = 'blog/tag_detail.html'
@@ -47,6 +55,13 @@ class TagUpdate(ObjectUpdateMixin, View):
     model = Tag
     model_form = TagForm
     template = 'blog/tag_update_form.html'
+    # raise_exception = True
+
+
+class TagDelete(ObjectDeleteMixin, View):
+    model = Tag
+    template = 'blog/tag_delete_form.html'
+    redirect_url = 'tags_list_url'
     # raise_exception = True
 
 
